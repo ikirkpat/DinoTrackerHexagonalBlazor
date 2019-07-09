@@ -1,4 +1,5 @@
 using Bogus;
+using DinoTracker.Common.Utils.Patterns;
 using DinoTracker.Domain.Exhibits;
 using DinoTracker.Domain.Facilities;
 using System;
@@ -7,81 +8,61 @@ using System.Linq;
 
 namespace DinoTracker.Domain.Tests.Builders
 {
-  public abstract class BasicTestExhibitBuilder<E> : IExhibitBuilder
+  public abstract class BasicTestExhibitBuilder<E> : BasicTestBuilder<E>
     where E : Exhibit, new()
   {
-    protected E _build;
-
-    protected List<string> _propertiesToRandomize;
-    protected Faker _faker;
-
     public BasicTestExhibitBuilder()
+      : base()
     {
-      _build = new E();
-      _propertiesToRandomize = new List<string>()
+      _propertiesToRandomize.AddRange(new List<string>()
       {
         "Id", "ProperName", "CommonName", "Era", "Notes", "CurrentLocation"
-      };
-      _faker = new Faker();
+      });
     }
 
-    public virtual IExhibitBuilder Id(Guid id)
+    public virtual BasicTestExhibitBuilder<E> Id(Guid id)
     {
       _build.Id = id;
       MarkPropertyNotRandomized("Id");
       return this;
     }
 
-    public virtual IExhibitBuilder ProperName(string properName)
+    public virtual BasicTestExhibitBuilder<E> ProperName(string properName)
     {
       _build.ProperName = properName;
       MarkPropertyNotRandomized("ProperName");
       return this;
     }
 
-    public virtual IExhibitBuilder CommonName(string commonName)
+    public virtual BasicTestExhibitBuilder<E> CommonName(string commonName)
     {
       _build.CommonName = commonName;
       MarkPropertyNotRandomized("CommonName");
       return this;
     }
 
-    public virtual IExhibitBuilder Era(string era)
+    public virtual BasicTestExhibitBuilder<E> Era(string era)
     {
       _build.Era = era;
       MarkPropertyNotRandomized("Era");
       return this;
     }
 
-    public virtual IExhibitBuilder Notes(string notes)
+    public virtual BasicTestExhibitBuilder<E> Notes(string notes)
     {
       _build.Notes = notes;
       MarkPropertyNotRandomized("Notes");
       return this;
     }
 
-    public virtual IExhibitBuilder AtLocation(Location currentLocation)
+    public virtual BasicTestExhibitBuilder<E> AtLocation(Location currentLocation)
     {
       _build.CurrentLocation = currentLocation;
       MarkPropertyNotRandomized("CurrentLocation");
       return this;
     }
-
-    public virtual Exhibit Build()
-    {
-      GenerateRandoms();
-      return _build;
-    }
-
-    protected virtual void GenerateRandoms()
-    {
-      foreach (string propertyName in _propertiesToRandomize)
-      {
-        GenerateRandomValueForProperty(propertyName);
-      }
-    }
-
-    protected virtual void GenerateRandomValueForProperty(string propertyName)
+    
+    protected override void GenerateRandomValueForProperty(string propertyName)
     {
       switch (propertyName)
       {
@@ -103,12 +84,6 @@ namespace DinoTracker.Domain.Tests.Builders
         default:
           break;
       }
-    }
-
-    protected void MarkPropertyNotRandomized(string propertyName)
-    {
-      if (_propertiesToRandomize.Contains(propertyName))
-        _propertiesToRandomize.RemoveAt(_propertiesToRandomize.IndexOf(propertyName));
     }
   }
 }

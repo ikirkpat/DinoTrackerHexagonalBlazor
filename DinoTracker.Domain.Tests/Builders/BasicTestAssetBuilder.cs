@@ -15,7 +15,7 @@ namespace DinoTracker.Domain.Tests.Builders
       _propertiesToRandomize.Add("CreditedFounder");
     }
 
-    public virtual IExhibitBuilder CreditedFounder(string creditedFounder)
+    public virtual BasicTestAssetBuilder CreditedFounder(string creditedFounder)
     {
       _build.CreditedFounder = creditedFounder;
       MarkPropertyNotRandomized("CreditedFounder");
