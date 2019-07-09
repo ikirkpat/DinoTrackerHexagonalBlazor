@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace DinoTracker.Domain.Exhibits
 {
-  public interface IAsset : IExhibit
+  public class Asset : Exhibit
   {
-    string CreditedFounder { get; set; }
+    public string CreditedFounder { get; set; }
   }
 }

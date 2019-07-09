@@ -6,6 +6,6 @@ namespace DinoTracker.Domain.Ports.Repositories
 {
   public interface IMuseumRepository
   {
-    Task<IMuseum> Get(Guid id);
+    Task<Museum> Get(Guid id);
   }
 }

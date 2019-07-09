@@ -14,16 +14,16 @@ namespace DinoTracker.Domain.Facilities
 
     public string Name { get; set; }
 
-    public List<IExhibit> Exhibits { get; }
+    public List<Exhibit> Exhibits { get; }
 
     public Location(IExhibitRepository exhibitRepository)
     {
       _exhibitRepository = exhibitRepository;
     }
 
-    public async Task<IExhibit> AddExhibit(IExhibit exhibitToAdd)
+    internal async Task<Exhibit> AddExhibit(Exhibit exhibitToAdd)
     {
-      IExhibit created = await _exhibitRepository.Create(exhibitToAdd);
+      Exhibit created = await _exhibitRepository.Create(exhibitToAdd);
       Exhibits.Add(created);
       return created;
     }

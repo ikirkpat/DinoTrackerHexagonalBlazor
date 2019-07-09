@@ -6,8 +6,8 @@ namespace DinoTracker.Domain.Ports.Repositories
 {
   public interface IExhibitRepository
   {
-    Task<IExhibit> Create(IExhibit toCreate);
+    Task<Exhibit> Create(Exhibit toCreate);
 
-    Task<IExhibit> Get(int id);
+    Task<Exhibit> Get(Guid id);
   }
 }

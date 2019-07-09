@@ -6,6 +6,6 @@ namespace DinoTracker.Domain.Ports.UseCases.Inventory
 {
   public interface IExhibitInventoryUseCase
   {
-    Task<IExhibit> NewExhibit(IExhibit toAdd);
+    Task<Exhibit> NewExhibit(Exhibit toAdd, Guid museumId);
   }
 }

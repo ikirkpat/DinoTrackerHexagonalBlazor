@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace DinoTracker.Domain.Inventory
 {
-  public class ExhibitSearchParamenters
+  public class ExhibitSearchParameters
   {
-    Guid? Id { get; set; }
+    public Guid? Id { get; set; }
 
-    string ProperName { get; set; }
+    public string ProperName { get; set; }
 
-    string CommonName { get; set; }
+    public string CommonName { get; set; }
   }
 }

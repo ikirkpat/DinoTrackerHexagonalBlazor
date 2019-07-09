@@ -1,6 +1,6 @@
 using DinoTracker.Domain.Exhibits;
 using DinoTracker.Domain.Facilities;
-using DinoTracker.Repositories;
+using DinoTracker.Domain.Ports.Repositories;
 using System;
 using System.Threading.Tasks;
 
@@ -15,10 +15,10 @@ namespace DinoTracker.Domain.Ports.UseCases.Inventory
       _museumRepository = museumRepository;
     }
 
-    public async Task<IExhibit> NewExhibit(IExhibit toAdd, Guid museumId)
+    public async Task<Exhibit> NewExhibit(Exhibit toAdd, Guid museumId)
     {
-      IMuseum museum = await _museumRepository.Get(museumId);
-      IExhibit createdExhibit = await museum.AddExhibit(toAdd);
+      Museum museum = await _museumRepository.Get(museumId);
+      Exhibit createdExhibit = await museum.AddExhibit(toAdd);
       return createdExhibit;
     }
   }
