@@ -16,9 +16,18 @@ namespace DinoTracker.Domain.Facilities
 
     public string Name { get; set; }
 
-    public List<Location> Locations { get; }
+    public List<Location> Locations { get; set; }
 
     public Museum(IExhibitRepository exhibitRepository)
+    {
+      _exhibitRepository = exhibitRepository;
+    }
+
+    public Museum()
+    {
+    }
+
+    public void InjectExhibitRepository(IExhibitRepository exhibitRepository)
     {
       _exhibitRepository = exhibitRepository;
     }
